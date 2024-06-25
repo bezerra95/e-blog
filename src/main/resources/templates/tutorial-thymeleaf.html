@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Exemplo Thymeleaf</title>
+</head>
+<body>
+<header>
+    <!-- Imagem com fonte dinâmica -->
+    <img th:src="@{/images/logo.png}" alt="Logo">
+
+    <!-- Navegação com links dinâmicos -->
+    <nav>
+        <ul>
+            <li><a th:href="@{/home}">Home</a></li>
+            <li><a th:href="@{/about}">Sobre</a></li>
+            <li><a th:href="@{/contact}">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Saudação com texto dinâmico -->
+    <h1>Bem-vindo, <span th:text="${user.name}">Visitante</span></h1>
+
+    <!-- Condicional: Exibir se o usuário está ativo -->
+    <div th:if="${user.active}">
+        <p>Seu status é <span th:text="${user.status}">ativo</span>.</p>
+    </div>
+
+    <!-- Condicional: Exibir se o usuário não está ativo -->
+    <div th:unless="${user.active}">
+        <p>Você não está ativo. Por favor, <a th:href="@{/activate}">ative sua conta</a>.</p>
+    </div>
+
+    <!-- Formulário com ação e objeto dinâmicos -->
+    <form th:action="@{/submit}" th:object="${user}" method="post">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" th:field="*{name}">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <!-- Lista de itens iterada dinamicamente -->
+    <h2>Itens</h2>
+    <ul>
+        <li th:each="item : ${items}" th:text="${item}">Item</li>
+    </ul>
+</main>
+
+<footer>
+    <p>&copy; 2024 - Todos os direitos reservados.</p>
+</footer>
+</body>
+</html>
+
+
+<!--
+ARQUIVO =  (messages.properties  =  ciriar file em RESOURCES)
+nav.home=Home
+nav.about=Sobre
+nav.contact=Contato
+
+welcome.message=Bem-vindo, {0}
+
+user.status.active=Seu status é ativo.
+user.status.inactive=Você não está ativo. Por favor, ative sua conta.
+
+activate.account=ative sua conta
+
+form.label.name=Nome:
+form.submit=Enviar
+
+items.title=Itens
+
+footer.copy=&copy; 2024 - Todos os direitos reservados.
+-->
