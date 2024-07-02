@@ -7,6 +7,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import javax.servlet.http.HttpSession
 
 
 @Controller
@@ -25,7 +26,7 @@ class LoginController(
     }
 
     @PostMapping
-    fun login(user: User, model: Model): String {
+    fun login(user: User, model: Model, session: HttpSession): String {
         logger.info("Login($user)")
 
         val optional = repository.findByEmail(user.email)
@@ -44,6 +45,13 @@ class LoginController(
             return "login"
         }
         logger.info("Login executado com sucesso")
+        session.setAttribute("currentUser", userDatabase)
         return "redirect:/"
+    }
+
+    @GetMapping("/logout")
+    fun logout(session: HttpSession): String {
+        session.invalidate()
+        return "redirect:/login"
     }
 }
