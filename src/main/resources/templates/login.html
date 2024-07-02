@@ -80,12 +80,21 @@
                        </button>
                    </form>
 
+                   <div th:if="${messageError != null}">
+                       <br>
+                       <div class="alert alert-danger alert-dismissible fade show", role="alert">
+                           <span th:text="${messageError}"></span>
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">x</span>
+                           </button>
+
+                       </div>
                </div>
 
            </div>
 
        </div>
    </div>
-
+   </div>
 </body>
 </html>
