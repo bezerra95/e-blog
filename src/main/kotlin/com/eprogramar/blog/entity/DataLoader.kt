@@ -1,5 +1,7 @@
-package com.eprogramar.blog
+package com.eprogramar.blog.entity
 
+import com.eprogramar.blog.repository.CategoryRepository
+import com.eprogramar.blog.repository.UserRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -7,8 +9,8 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class DataLoader(
-        private val userRepository: UserRepository,
-        private val categoryRepository: CategoryRepository
+    private val userRepository: UserRepository,
+    private val categoryRepository: CategoryRepository
 ) : CommandLineRunner {
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)

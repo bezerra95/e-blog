@@ -1,5 +1,10 @@
-package com.eprogramar.blog
+package com.eprogramar.blog.controller
 
+import com.eprogramar.blog.entity.Article
+import com.eprogramar.blog.entity.Author
+import com.eprogramar.blog.entity.User
+import com.eprogramar.blog.repository.ArticleRepository
+import com.eprogramar.blog.repository.AuthorRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -15,8 +20,8 @@ import javax.servlet.http.HttpSession
 @Controller
 @RequestMapping("/article")
 class ArticleController(
-        private val authorRepository: AuthorRepository,
-        private val articleRepository: ArticleRepository
+    private val authorRepository: AuthorRepository,
+    private val articleRepository: ArticleRepository
 ) {
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
@@ -50,5 +55,4 @@ class ArticleController(
 
         return "redirect:/"
     }
-
 }
