@@ -122,17 +122,28 @@
   <div class="row">
     <div class="col-md-8 blog-main">
 
-      <div class="blog-post" th:each="article : ${articles}">
+      <div class="card blog-post" th:each="article : ${articles}">
 
-        <h1 class="blog-post-title" th:text="${article.title}">Sample blog post</h1>
-        <p class="blog-post-meta">
-          <span th:text="${article.date}">January 1, 2014 by</span>
-          <a href="#" th:text="${article.author.user.name}">Mark</a>
-        </p>
+        <h1 class="blog-post-title card-header" th:text="${article.title}">
+          Sample blog post
+        </h1>
 
-        <h3 th:text="${article.subTitle}">Sub title</h3>
-        <hr>
-        <p th:text="${article.content}">Cum sociis natoque penatibus et magnis.</p>
+        <div class="card-body">
+          <h5 class="card-title text-muted" th:text="${article.subTitle}">Sub title</h5>
+          <p th:text="${article.content}">Content</p>
+        </div>
+
+        <div class="card-footer text-muted">
+
+          <div class="badge badge-secondary">
+            Autor:<span th:text="${article.author.user.name}">Author</span>
+          </div>
+
+          <div class="badge badge-secondary">
+            Data:<span th:text="${article.date}">Date</span>
+          </div>
+
+        </div>
 
       </div><!-- /.blog-post -->
 
