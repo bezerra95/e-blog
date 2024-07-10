@@ -51,23 +51,43 @@ class DataLoader(
 
     private fun loadUser() {
         if (userRepository.count() == 0L) {
-            val user = User(
+            listOf(
+                User(
                     name = "Administrator",
                     email = "admin@blog.com",
                     password = "admin"
-            )
-            userRepository.save(user).also { logger.info(it.toString()) }
+                ),
+
+                User(
+                    name = "Julio Cesar",
+                    email = "julio@blog.com",
+                    password = "julio"
+                ),
+            ).also { userRepository.saveAll(it) }
+
         }
     }
 
     private fun loadArticles() {
         if (articleRepository.count() == 0L) {
-            val user = userRepository.findAll().get(0)
 
-            val author = authorRepository.save(
-                Author(
-                    user = user
-                )
+            val authors = authorRepository.saveAll(
+               listOf(
+                   Author(
+                       user = userRepository.findAll().get(0),
+                       about = "eu sou authoooor",
+                       facebook = "http://facebook.com/administrador",
+                       twitter = "http://twitter.com/administrador",
+                       linkedIn = "http://linkedIn.com/administrador"
+                   ),
+                   Author(
+                       user = userRepository.findAll().get(1),
+                       about = "eu sou julioooooo cesaaar",
+                       facebook = "http://facebook.com/julio",
+                       twitter = "http://twitter.com/julio",
+                       linkedIn = "http://linkedIn.com/julio"
+                   )
+               )
             )
 
             listOf(
@@ -84,7 +104,7 @@ class DataLoader(
 
                     date = LocalDateTime.now(),
 
-                    author = author
+                    author = authors.get(0)
                 ),
                 Article(
                     title = "Kotlin Web MVC com Spring Boot - Hands on",
@@ -98,7 +118,7 @@ class DataLoader(
 
                     date = LocalDateTime.now(),
 
-                    author = author
+                    author = authors.get(1)
                 )
             ).also { articleRepository.saveAll(it) }
         }
