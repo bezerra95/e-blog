@@ -38,6 +38,7 @@ class IndexController(
         model.addAttribute("priorPage", priorPage)
         model.addAttribute("isFirst", articles.isFirst)
         model.addAttribute("isLast", articles.isLast)
+        model.addAttribute("author", articles.content.get(0).author)
         return "index"
     }
 }
