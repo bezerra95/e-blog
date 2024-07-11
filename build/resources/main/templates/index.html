@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -90,16 +89,9 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-
       <a class="p-2 text-muted" href="#" th:each=" category: ${categories}">
         <span th:text="${category.name}"> Technology </span>
       </a>
-
-
-      <a class="p-2 text-muted" href="#" th:each="category: ${categories}">
-        <span th:text="${category.name}">Technology</span>
-      </a>
-
     </nav>
   </div>
 
