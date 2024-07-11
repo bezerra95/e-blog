@@ -55,4 +55,10 @@ class ArticleController(
 
         return "redirect:/"
     }
+
+    @GetMapping("/list")
+    fun list(): String{
+        logger.info("list()...")
+        return "article-list"
+    }
 }
