@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
@@ -64,6 +65,24 @@ class ArticleController(
         model.addAttribute("articles", articleRepository.findAll(Sort.by(Sort.Direction.DESC, "id")))
         model.addAttribute("categories", categoryRepository.findAll())
         logger.info("list()...")
+        return "article-list"
+    }
+
+    @GetMapping("/list/user/{userId}")
+    fun listByAuthor(@PathVariable userId: Long, model: Model): String {
+        val sort = Sort.by(Sort.Direction.DESC, "id")
+        model.addAttribute("articles", articleRepository.findByAuthorUserId(userId, sort))
+        model.addAttribute("categories", categoryRepository.findAll())
+        logger.info("list = ($userId)...")
+        return "article-list"
+    }
+
+    @GetMapping("/list/category/{categoryId}")
+    fun listByCategory(@PathVariable categoryId: Long, model: Model): String {
+        val sort = Sort.by(Sort.Direction.DESC, "id")
+        model.addAttribute("articles", articleRepository.findByCategoryId(categoryId, sort))
+        model.addAttribute("categories", categoryRepository.findAll())
+        logger.info("category = ($categoryId)...")
         return "article-list"
     }
 }
