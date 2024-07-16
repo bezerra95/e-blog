@@ -33,9 +33,9 @@ class DataLoader(
     private fun loadCategories() {
         if (categoryRepository.count() == 0L) {
             listOf(
+                    Category(name = "Technology"),
                     Category(name = "World"),
                     Category(name = "U.S."),
-                    Category(name = "Technology"),
                     Category(name = "Design"),
                     Category(name = "Culture"),
                     Category(name = "Business"),
@@ -70,7 +70,8 @@ class DataLoader(
 
     private fun loadArticles() {
         if (articleRepository.count() == 0L) {
-
+            val categoryTecnology = categoryRepository.findAll().get(0)
+            val categoryWord = categoryRepository.findAll().get(1)
             val authors = authorRepository.saveAll(
                listOf(
                    Author(
@@ -104,7 +105,9 @@ class DataLoader(
 
                     date = LocalDateTime.now(),
 
-                    author = authors.get(0)
+                    author = authors.get(0),
+
+                    category = categoryTecnology
                 ),
                 Article(
                     title = "Kotlin Web MVC com Spring Boot - Hands on",
@@ -118,7 +121,9 @@ class DataLoader(
 
                     date = LocalDateTime.now(),
 
-                    author = authors.get(1)
+                    author = authors.get(1),
+
+                    category = categoryWord
                 )
             ).also { articleRepository.saveAll(it) }
         }
