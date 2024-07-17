@@ -2,6 +2,7 @@ package com.eprogramar.blog.controller
 
 import com.eprogramar.blog.entity.Article
 import com.eprogramar.blog.entity.Author
+import com.eprogramar.blog.entity.Category
 import com.eprogramar.blog.entity.User
 import com.eprogramar.blog.repository.ArticleRepository
 import com.eprogramar.blog.repository.AuthorRepository
@@ -34,6 +35,7 @@ class ArticleController(
     fun form(model: Model): String {
         logger.info("form()...")
         model.addAttribute("article", Article())
+        model.addAttribute("categories", categoryRepository.findAll())
         return "article"
     }
 

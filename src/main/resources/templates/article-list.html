@@ -70,9 +70,12 @@
     <h1 class="font-italic" th:text="#{blog.title}">Artigos</h1>
     <a href="article.html" class="btn btn-success" th:href="@{/article}">Novo Artigo</a>
 </div>
-<div class="col-md-8 blog-main">
-    <div class="card blog-post" th:each="article : ${articles}">
-        <h1 class="blog-post-title card-header" th:text="${article.title}">Sample blog post</h1>
+<div th:each="article : ${articles}">
+    <div class="card blog-post">
+
+        <h1 class="blog-post-title card-header" th:text="${article.title}">
+            Sample blog post
+        </h1>
         <div class="card-body">
             <h5 class="card-title text-muted" th:text="${article.subTitle}">Sub title</h5>
             <p th:text="${article.content}">Content</p>
@@ -81,9 +84,15 @@
             <div class="badge badge-secondary">
                 Autor:<span th:text="${article.author.user.name}">Author</span>
             </div>
+
             <div class="badge badge-secondary">
                 Data:<span th:text="${article.date}">Date</span>
             </div>
+
+            <div class="badge badge-secondary float-right">
+                Autor:<span th:text="${article.category.name}">Category</span>
+            </div>
+
         </div>
     </div>
 </div>
