@@ -118,7 +118,6 @@
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8 blog-main">
-
       <div class="card blog-post" th:each="article : ${articles}">
 
         <h1 class="blog-post-title card-header" th:text="${article.title}">
@@ -138,6 +137,10 @@
 
           <div class="badge badge-secondary">
             Data:<span th:text="${article.date}">Date</span>
+          </div>
+
+          <div class="badge badge-secondary float-right">
+            Autor:<span th:text="${article.category.name}">Category</span>
           </div>
 
         </div>

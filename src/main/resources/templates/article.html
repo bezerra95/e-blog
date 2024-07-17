@@ -62,10 +62,20 @@
                     <input type="text" th:field="*{title}" class="form-control" autofocus required>
                 </div>
 
-                <div class="form-group">
-                    <label>Subtitulo</label>
-                    <input type="text" th:field="*{subTitle}" class="form-control" required>
-                </div>
+             <div class="row">
+                 <div class="form-group col 7">
+                     <label>Subtitulo</label>
+                     <input type="text" th:field="*{subTitle}" class="form-control" required>
+                 </div>
+                 <div class="form-group col 5">
+                     <label>Categoria</label>
+                     <select th:field="*{category.id}" class="form-control">
+                         <option th:each=" category : ${categories}"
+                                 th:text="${category.name}"
+                                 th:value="${category.id}"></option>
+                     </select>
+                 </div>
+             </div>
 
                 <div class="form-group col-6">
                     <label>Conteudo</label>
