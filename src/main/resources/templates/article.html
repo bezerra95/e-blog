@@ -57,16 +57,27 @@
 
             <form action="index.html" th:action="@{/article}" th:object="${article}" method="post">
 
-                <div class="form-group">
-                    <label>Titulo</label>
-                    <input type="text" th:field="*{title}" class="form-control" autofocus required>
+                <div class="row">
+
+                    <div class="form-group col-2">
+                        <label>Titulo</label>
+                        <input type="text" th:field="*{id}" class="form-control" readonly>
+                    </div>
+
+                    <div class="form-group col-10">
+                        <label>Titulo</label>
+                        <input type="text" th:field="*{title}" class="form-control" autofocus required>
+                    </div>
+
                 </div>
 
              <div class="row">
+
                  <div class="form-group col 7">
                      <label>Subtitulo</label>
                      <input type="text" th:field="*{subTitle}" class="form-control" required>
                  </div>
+
                  <div class="form-group col 5">
                      <label>Categoria</label>
                      <select th:field="*{category.id}" class="form-control">
@@ -75,6 +86,7 @@
                                  th:value="${category.id}"></option>
                      </select>
                  </div>
+
              </div>
 
                 <div class="form-group col-6">

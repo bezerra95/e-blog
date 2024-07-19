@@ -87,4 +87,12 @@ class ArticleController(
         logger.info("category = ($categoryId)...")
         return "article-list"
     }
+
+    @GetMapping("/edit/{articleId}")
+    fun edit(@PathVariable articleId: Long, model: Model): String {
+        logger.info("edit($articleId)...")
+        model.addAttribute("article", articleRepository.findById(articleId).get())
+        model.addAttribute("categories", categoryRepository.findAll())
+        return "article"
+    }
 }
