@@ -79,6 +79,13 @@
         <div class="card-body">
             <h5 class="card-title text-muted" th:text="${article.subTitle}">Sub title</h5>
             <p th:text="${article.content}">Content</p>
+
+            <a href="article.html" class="btn btn-light btn-small"
+               th:href="@{/article/edit/{articleId}(articleId=${article.id})}"
+               th:if="${article.author.user.id == session.currentUser.id}">
+                <i class="fas fa-edit"></i>
+            </a>
+
         </div>
         <div class="card-footer text-muted">
             <div class="badge badge-secondary">
