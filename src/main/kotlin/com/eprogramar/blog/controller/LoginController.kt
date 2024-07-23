@@ -2,6 +2,7 @@ package com.eprogramar.blog.controller
 
 import com.eprogramar.blog.model.User
 import com.eprogramar.blog.repository.UserRepository
+import com.eprogramar.blog.service.UserService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpSession
 @Controller
 @RequestMapping("/login")
 class LoginController(
-    private val repository: UserRepository
+    private val userService: UserService
 ) {
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
@@ -31,7 +32,7 @@ class LoginController(
     fun login(user: User, model: Model, session: HttpSession): String {
         logger.info("Login($user)")
 
-        val optional = repository.findByEmail(user.email)
+        val optional = userService.findByEmail(user.email)
         if (optional.isEmpty) {
             val messageError = "Usuário não localizado"
             logger.error(messageError)
