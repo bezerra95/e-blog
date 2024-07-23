@@ -1,9 +1,9 @@
 package com.eprogramar.blog
 
-import com.eprogramar.blog.entity.Article
-import com.eprogramar.blog.entity.Author
-import com.eprogramar.blog.entity.Category
-import com.eprogramar.blog.entity.User
+import com.eprogramar.blog.model.Article
+import com.eprogramar.blog.model.Author
+import com.eprogramar.blog.model.Category
+import com.eprogramar.blog.model.User
 import com.eprogramar.blog.repository.ArticleRepository
 import com.eprogramar.blog.repository.AuthorRepository
 import com.eprogramar.blog.repository.CategoryRepository

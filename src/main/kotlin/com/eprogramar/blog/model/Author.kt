@@ -1,4 +1,4 @@
-package com.eprogramar.blog.entity
+package com.eprogramar.blog.model
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

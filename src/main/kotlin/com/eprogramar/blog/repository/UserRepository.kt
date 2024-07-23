@@ -1,6 +1,6 @@
 package com.eprogramar.blog.repository
 
-import com.eprogramar.blog.entity.User
+import com.eprogramar.blog.model.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.util.Optional

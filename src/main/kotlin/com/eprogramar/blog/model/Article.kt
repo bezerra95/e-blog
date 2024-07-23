@@ -1,4 +1,4 @@
-package com.eprogramar.blog.entity
+package com.eprogramar.blog.model
 
 import java.time.LocalDateTime
 import javax.persistence.Entity
