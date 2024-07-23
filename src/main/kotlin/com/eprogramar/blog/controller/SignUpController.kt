@@ -2,6 +2,7 @@ package com.eprogramar.blog.controller
 
 import com.eprogramar.blog.model.User
 import com.eprogramar.blog.repository.UserRepository
+import com.eprogramar.blog.service.UserService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/signup")
 class SignUpController(
-    private val repository: UserRepository
+    private val userService: UserService
 ) {
 
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
@@ -36,7 +37,7 @@ class SignUpController(
             model.addAttribute("messageError", messageError)
             return "signup"
         }
-        repository.save(user).also{ logger.info(user.toString()) }
+        userService.save(user).also{ logger.info(user.toString()) }
         return "redirect:/login"
     }
 }

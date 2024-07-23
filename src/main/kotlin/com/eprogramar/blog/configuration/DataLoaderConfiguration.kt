@@ -1,4 +1,4 @@
-package com.eprogramar.blog
+package com.eprogramar.blog.configuration
 
 import com.eprogramar.blog.model.Article
 import com.eprogramar.blog.model.Author
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration
 import java.time.LocalDateTime
 
 @Configuration
-class DataLoader(
+class DataLoaderConfiguration(
     private val userRepository: UserRepository,
     private val categoryRepository: CategoryRepository,
     private val articleRepository: ArticleRepository,
