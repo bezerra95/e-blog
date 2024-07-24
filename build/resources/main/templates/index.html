@@ -1,160 +1,163 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.6">
-    <title>Blog e-Programar</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.6">
+  <title>Blog e-Programar</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Inclui o CSS do Bootstrap para estilização -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../static/favicon.png" th:href="@{/favicon.png}" />
-    <meta name="theme-color" content="#563d7c">
+  <!-- Inclui o favicon -->
+  <link rel="icon" type="image/png" href="../static/favicon.png" th:href="@{/favicon.png}" />
 
+  <meta name="theme-color" content="#563d7c">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
       }
+    }
+  </style>
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+  <!-- Inclui fontes personalizadas do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="../static/blog.css" rel="stylesheet" th:href="@{/blog.css}" />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  </head>
+  <!-- Inclui o CSS personalizado para o blog -->
+  <link href="../static/blog.css" rel="stylesheet" th:href="@{/blog.css}" />
 
-  <body>
-  <div class="container">
-    <header class="blog-header py-3">
-      <div class="row flex-nowrap justify-content-between align-items-center">
-        <div class="col-4 pt-1">
-          <a class="text-muted" href="signup.html" th:href="@{/signup}" th:if="${session.currentUser == null}">
-            <i class="fas fa-id-card"></i> <span th:text="#{blog.subscribe}">Subscribe</span>
-          </a>
-        </div>
-        <div class="col-4 text-center">
-          <!-- <a class="blog-header-logo text-dark" href="#">Large</a> -->
-          <img src="../static/blog-logo.png" th:src="@{/blog-logo.png}" alt="Logo" height="50px" />
-        </div>
+  <!-- Inclui ícones do Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
 
-        <div class="col-4 d-flex justify-content-end align-items-center">
-          <a class="btn btn-sm btn-outline-secondary" href="login.html"
-             th:href="@{/login}" th:if="${session.currentUser == null}">
-            <i class="fas fa-sign-in-alt"></i> <span th:text="#{blog.signin}">Sign in</span>
-          </a>
+<body>
+<div class="container">
+  <header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+      <div class="col-4 pt-1">
+        <!-- Link para a página de inscrição visível apenas se o usuário não estiver logado -->
+        <a class="text-muted" href="signup.html" th:href="@{/signup}" th:if="${session.currentUser == null}">
+          <i class="fas fa-id-card"></i> <span th:text="#{blog.subscribe}">Subscribe</span>
+        </a>
+      </div>
+      <div class="col-4 text-center">
+        <!-- Logo do blog -->
+        <img src="../static/blog-logo.png" th:src="@{/blog-logo.png}" alt="Logo" height="50px" />
+      </div>
 
-          <div class="dropdown" th:if="${session.currentUser != null}">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span th:text="${session.currentUser.name}"></span>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Perfil</a>
-              <a class="dropdown-item" href="article.html" th:href="@{/article}">
-                Novo Artigo
-              </a>
-              <a class="dropdown-item" href="articles-list.html" th:href="@{article/list/user/{id}(id=${session.currentUser.id})}">Meus Artigos</a>
-              <a class="dropdown-item" href="articles-list.html" th:href="@{article/list}">Todos Artigos</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="login.html" th:href="@{/login/logout}">
-                Sair
-              </a>
-            </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <!-- Link para a página de login visível apenas se o usuário não estiver logado -->
+        <a class="btn btn-sm btn-outline-secondary" href="login.html"
+           th:href="@{/login}" th:if="${session.currentUser == null}">
+          <i class="fas fa-sign-in-alt"></i> <span th:text="#{blog.signin}">Sign in</span>
+        </a>
+
+        <!-- Menu dropdown visível apenas se o usuário estiver logado -->
+        <div class="dropdown" th:if="${session.currentUser != null}">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span th:text="${session.currentUser.name}"></span> <!-- Nome do usuário logado -->
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <!-- Itens do menu dropdown -->
+            <a class="dropdown-item" href="#">Perfil</a>
+            <a class="dropdown-item" href="article.html" th:href="@{/article}">Novo Artigo</a>
+            <a class="dropdown-item" href="articles-list.html" th:href="@{article/list/user/{id}(id=${session.currentUser.id})}">Meus Artigos</a>
+            <a class="dropdown-item" href="articles-list.html" th:href="@{article/list}">Todos Artigos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="login.html" th:href="@{/login/logout}">Sair</a>
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
+  <!-- Barra de navegação das categorias -->
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
+      <!-- Loop sobre as categorias -->
       <a class="p-2 text-muted" href="articles-list.html" th:href="@{article/list/category/{id}(id=${category.id})}"
-      th:each="category: ${categories}">
-        <span th:text="${category.name}"> Technology </span>
+         th:each="category: ${categories}">
+        <span th:text="${category.name}">Technology</span> <!-- Nome da categoria -->
       </a>
     </nav>
   </div>
 
+  <!-- Jumbotron para o título e subtítulo do blog -->
   <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic" th:text="#{blog.title}">Blog Title</h1>
-      <p class="lead my-3" th:text="#{blog.subTitle}">Blog Sub Title.</p>
+      <h1 class="display-4 font-italic" th:text="#{blog.title}">Blog Title</h1> <!-- Título do blog -->
+      <p class="lead my-3" th:text="#{blog.subTitle}">Blog Sub Title.</p> <!-- Subtítulo do blog -->
     </div>
   </div>
 
-    <div th:if="${messageSuccess != null}">
-      <br>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <span th:text="${messageSuccess}"></span>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+  <!-- Mensagem de sucesso visível se existir -->
+  <div th:if="${messageSuccess != null}">
+    <br>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span th:text="${messageSuccess}"></span> <!-- Texto da mensagem de sucesso -->
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span> <!-- Botão para fechar a mensagem -->
+      </button>
     </div>
+  </div>
 
 </div>
 
+<!-- Seção principal do blog -->
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8 blog-main">
+      <!-- Loop sobre os artigos -->
       <div class="card blog-post" th:each="article : ${articles}">
 
-        <h1 class="blog-post-title card-header" th:text="${article.title}">
-          Sample blog post
-        </h1>
+        <h1 class="blog-post-title card-header" th:text="${article.title}">Sample blog post</h1> <!-- Título do artigo -->
 
         <div class="card-body">
-          <h5 class="card-title text-muted" th:text="${article.subTitle}">Sub title</h5>
-          <p th:text="${article.content}">Content</p>
+          <h5 class="card-title text-muted" th:text="${article.subTitle}">Sub title</h5> <!-- Subtítulo do artigo -->
+          <p th:text="${article.content}">Content</p> <!-- Conteúdo do artigo -->
         </div>
 
         <div class="card-footer text-muted">
-
           <div class="badge badge-secondary">
-            Autor:<span th:text="${article.author.user.name}">Author</span>
+            Autor:<span th:text="${article.author.user.name}">Author</span> <!-- Nome do autor do artigo -->
           </div>
 
           <div class="badge badge-secondary">
-            Data:<span th:text="${article.date}">Date</span>
+            Data:<span th:text="${article.date}">Date</span> <!-- Data de publicação do artigo -->
           </div>
 
           <div class="badge badge-secondary float-right">
-            Autor:<span th:text="${article.category.name}">Category</span>
+            Categoria:<span th:text="${article.category.name}">Category</span> <!-- Categoria do artigo -->
           </div>
-
         </div>
 
       </div><!-- /.blog-post -->
 
+      <!-- Navegação entre páginas de artigos -->
       <nav class="blog-pagination">
         <a class="btn btn-outline-primary"
-           href="#" th:href="@{'/?page=' + ${priorPage}}"
-           th:classappend="${isFirst} ? 'disabled'">
+           href="#" th:href="@{'/?page=' + ${priorPage}}" th:classappend="${isFirst} ? 'disabled'">
           <i class="fas fa-angle-double-left"></i> <span th:text="#{article.older}">Older</span>
         </a>
-        <a class="btn btn-outline-secondary" href="#" th:href="@{'/?page=' + ${nextPage}}"
-           th:classappend="${isLast} ? 'disabled'">
+        <a class="btn btn-outline-secondary" href="#" th:href="@{'/?page=' + ${nextPage}}" th:classappend="${isLast} ? 'disabled'">
           <span th:text="#{article.newer}">Newer</span> <i class="fas fa-angle-double-right"></i>
         </a>
       </nav>
@@ -164,16 +167,15 @@
     <aside class="col-md-4 blog-sidebar">
       <div class="p-4 mb-3 bg-light rounded">
         <h4 class="font-italic">
-          <i class="fas fa-user"></i>
-          <!-- <span th:text="#{author.about}">About Author</span> -->
-          <span th:text="${author.user.name}">About Author</span>
+          <i class="fas fa-user"></i> <span th:text="${author.user.name}">About Author</span> <!-- Sobre o autor do blog -->
         </h4>
-        <p class="mb-0" th:text="${author.about}">About Content..</p>
+        <p class="mb-0" th:text="${author.about}">About Content..</p> <!-- Conteúdo sobre o autor -->
         <hr/>
         <h4 class="font-italic">
           <i class="fas fa-network-wired"></i> <span th:text="#{author.network}">Social Network</span>
         </h4>
         <ol class="list-unstyled">
+          <!-- Redes sociais do autor -->
           <li>
             <a href="#" th:href="${author.facebook}">
               <i class="fab fa-facebook-f"></i> <span class="text-secondary" th:text="${author.facebook}"></span>
@@ -192,11 +194,13 @@
         </ol>
       </div>
 
+      <!-- Seção de arquivos (archived posts) -->
       <div class="p-4">
         <h4 class="font-italic">
           <i class="fas fa-calendar-alt"></i> <span th:text="#{article.history}">Archives</span>
         </h4>
         <ol class="list-unstyled mb-0">
+          <!-- Links para arquivos antigos -->
           <li><a href="#">March 2014</a></li>
           <li><a href="#">February 2014</a></li>
           <li><a href="#">January 2014</a></li>
@@ -209,29 +213,29 @@
 
 </main><!-- /.container -->
 
-  <footer class="blog-footer">
-    <p>
-      <a href="#">Back to top</a>
-    </p>
-  </footer>
+<footer class="blog-footer">
+  <p>
+    <a href="#">Back to top</a> <!-- Link para voltar ao topo da página -->
+  </p>
+</footer>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-          crossorigin="anonymous">
-  </script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous">
+</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-          crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous">
+</script>
 
-  </script>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-          crossorigin="anonymous">
-  </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous">
+</script>
 
 </body>
 </html>
+
