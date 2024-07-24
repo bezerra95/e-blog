@@ -1,113 +1,118 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-        <meta name="generator" content="Jekyll v3.8.6">
-        <title>Blog e-Programar</title>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Declaração do namespace do Thymeleaf -->
+<head>
+    <meta charset="utf-8"> <!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!-- Define a responsividade -->
+    <meta name="description" content=""> <!-- Meta descrição da página -->
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"> <!-- Autores da página -->
+    <meta name="generator" content="Jekyll v3.8.6"> <!-- Gerador da página -->
+    <title>Blog e-Programar</title> <!-- Título da página -->
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
+    <!-- Link canônico para SEO -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
 
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" href="../static/favicon.png" th:href="@{/favicon.png}">
-        <meta name="theme-color" content="#563d7c">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../static/favicon.png" th:href="@{/favicon.png}"> <!-- Uso de Thymeleaf para URL de favicon -->
+    <meta name="theme-color" content="#563d7c"> <!-- Cor do tema -->
 
-        <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            user-select: none; /* Evita a seleção de texto por usuários */
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
             }
+        }
 
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style>
-        <!-- Custom styles for this template -->
-        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="../css/blog.css" rel="stylesheet" th:href="@{/blog.css}"/>
-        <!-- FontAwesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-              integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-              crossorigin="anonymous">
-        <style>
-            body {
-                margin-top: 50px;
-            }
-        </style>
-    </head>
+        body {
+            margin-top: 50px; /* Espaço no topo da página */
+        }
+    </style>
+
+    <!-- Fonte Playfair Display do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Estilos customizados para o template -->
+    <link href="../css/blog.css" rel="stylesheet" th:href="@{/blog.css}"/> <!-- Uso de Thymeleaf para URL de CSS -->
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+          crossorigin="anonymous">
+</head>
 <body class="container">
-    <div class="card">
-        <div class="card-body">
-            <div class="jumbotron text-center">
-                <h1>Cadastrar-se</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="jumbotron text-center">
+            <h1>Cadastrar-se</h1>
+        </div>
+
+        <!-- Formulário de cadastro -->
+        <form action="index.html" th:action="@{/signup}" th:object="${user}" method="post"> <!-- Uso de Thymeleaf para definir a ação e o objeto do formulário -->
+
+            <div class="row">
+                <div class="form-group col-6">
+                    <label>Nome</label>
+                    <!-- Campo de texto para o nome, usando Thymeleaf para vinculação de dados -->
+                    <input type="text" th:field="*{name}" class="form-control" autofocus required>
+                </div>
+
+                <div class="form-group col-6">
+                    <label>Email</label>
+                    <!-- Campo de texto para o email, usando Thymeleaf para vinculação de dados -->
+                    <input type="email" th:field="*{email}" class="form-control" required>
+                </div>
             </div>
 
-            <form action="index.html" th:action="@{/signup}" th:object="${user}" method="post">
-
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>Nome</label>
-                        <input type="text" th:field="*{name}" class="form-control" autofocus required>
-                    </div>
-
-                    <div class="form-group col-6">
-                        <label>Email</label>
-                        <input type="email" th:field="*{email}" class="form-control" required>
-                    </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label>Senha</label>
+                    <!-- Campo de senha, usando Thymeleaf para vinculação de dados -->
+                    <input type="password" th:field="*{password}" class="form-control" required>
                 </div>
-
-                <div class="row">
-                    <div class="form-group col-6">
-                        <label>Senha</label>
-                        <input type="password" th:field="*{password}" class="form-control" required>
-                    </div>
-                    <div class="form-group col-6">
-                        <label>Confirmar Senha</label>
-                        <input type="password" name="confirmPassword" class="form-control" required>
-                    </div>
+                <div class="form-group col-6">
+                    <label>Confirmar Senha</label>
+                    <!-- Campo para confirmar a senha, sem uso de Thymeleaf, pois não está vinculado a um objeto específico -->
+                    <input type="password" name="confirmPassword" class="form-control" required>
                 </div>
-                <hr>
+            </div>
+            <hr>
 
-                <button class="btn btn-primary">
-                    <i class="fas fa-save"></i> Salvar
+            <!-- Botões de ação -->
+            <button class="btn btn-primary">
+                <i class="fas fa-save"></i> Salvar
+            </button>
+
+            <button class="btn btn-secondary float-right" type="submit">
+                <i class="far fa-window-close"></i> Cancelar
+            </button>
+        </form>
+
+        <!-- Exibição de mensagens de erro usando Thymeleaf -->
+        <div th:if="${messageError != null}">
+            <br>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span th:text="${messageError}"></span> <!-- Exibe a mensagem de erro -->
+                <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-
-                <button class="btn btn-secondary float-right" type="submit">
-                    <i class="far fa-window-close"></i> Cancelar
-                </button>
-            </form>
-
-            <div th:if="${messageError != null}">
-                <br>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <span th:text="${messageError}"></span>
-                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-            crossorigin="anonymous">
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous">
+</script>
 </body>
 </html>

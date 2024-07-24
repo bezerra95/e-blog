@@ -12,49 +12,48 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
-
-@Controller
-@RequestMapping("/login")
+@Controller // Indica que esta classe é um controlador do Spring MVC
+@RequestMapping("/login") // Mapeia todas as requisições que começam com "/login" para este controlador
 class LoginController(
-    private val userService: UserService
+    private val userService: UserService // Injeção de dependência do serviço de usuário
 ) {
 
-    private val logger: Logger = LoggerFactory.getLogger(javaClass)
+    private val logger: Logger = LoggerFactory.getLogger(javaClass) // Logger para registrar mensagens de log
 
-    @GetMapping
+    @GetMapping // Mapeia requisições GET para o método form()
     fun form(model: Model): String {
-        logger.info("form()...")
-        model.addAttribute("user", User())
-        return "login"
+        logger.info("form()...") // Loga a chamada do método
+        model.addAttribute("user", User()) // Adiciona um novo objeto User ao modelo
+        return "login" // Retorna o nome do template de login (login.html)
     }
 
-    @PostMapping
+    @PostMapping // Mapeia requisições POST para o método login()
     fun login(user: User, model: Model, session: HttpSession): String {
-        logger.info("Login($user)")
+        logger.info("Login($user)") // Loga a tentativa de login com os dados do usuário
 
-        val optional = userService.findByEmail(user.email)
-        if (optional.isEmpty) {
-            val messageError = "Usuário não localizado"
-            logger.error(messageError)
-            model.addAttribute("messageError", messageError)
-            return "login"
+        val optional = userService.findByEmail(user.email) // Busca o usuário pelo email
+        if (optional.isEmpty) { // Verifica se o usuário não foi encontrado
+            val messageError = "Usuário não localizado" // Mensagem de erro
+            logger.error(messageError) // Loga o erro
+            model.addAttribute("messageError", messageError) // Adiciona a mensagem de erro ao modelo
+            return "login" // Retorna o template de login
         }
 
-        val userDatabase = optional.get()
-        if (user.password != userDatabase.password) {
-            val messageError = "Senha inválida!"
-            logger.error(messageError)
-            model.addAttribute("messageError", messageError)
-            return "login"
+        val userDatabase = optional.get() // Obtém o usuário encontrado
+        if (user.password != userDatabase.password) { // Verifica se a senha não corresponde
+            val messageError = "Senha inválida!" // Mensagem de erro
+            logger.error(messageError) // Loga o erro
+            model.addAttribute("messageError", messageError) // Adiciona a mensagem de erro ao modelo
+            return "login" // Retorna o template de login
         }
-        logger.info("Login executado com sucesso")
-        session.setAttribute("currentUser", userDatabase)
-        return "redirect:/"
+        logger.info("Login executado com sucesso") // Loga o sucesso do login
+        session.setAttribute("currentUser", userDatabase) // Adiciona o usuário à sessão
+        return "redirect:/" // Redireciona para a página inicial
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/logout") // Mapeia requisições GET para o método logout()
     fun logout(session: HttpSession): String {
-        session.invalidate()
-        return "redirect:/login"
+        session.invalidate() // Invalida a sessão do usuário
+        return "redirect:/login" // Redireciona para a página de login
     }
 }
